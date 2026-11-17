@@ -19,6 +19,9 @@ button{color:var(--ink);font-family:inherit}
 .band{background:var(--red);color:#fff}
 .wrap{max-width:1240px;margin:0 auto;padding:40px 20px 56px}
 .band .wrap{padding-bottom:40px}
+body.embed .band .eyebrow,body.embed .band h1,body.embed .band .lede{display:none}
+body.embed .band .wrap{padding-top:20px;padding-bottom:24px}
+body.embed .stats{margin-top:0}
 .eyebrow{font:700 15px var(--disp);letter-spacing:0;color:#fff;margin:0 0 6px}
 h1{font:700 clamp(36px,5.6vw,72px)/.98 var(--disp);letter-spacing:-.03em!important;margin:0 0 18px;letter-spacing:-.005em;color:#fff}
 .lede{font-size:19px;line-height:1.55;color:#fff;max-width:1080px;margin:0 0 12px}
@@ -83,6 +86,7 @@ p.s{font-size:15px;line-height:1.5;margin:0;color:var(--body)}
 </style>
 </head>
 <body>
+<script>if(/[?&]embed=1/.test(location.search))document.body.classList.add("embed")</script>
 <header class="band">
  <div class="wrap">
   <p class="eyebrow">Climate Cardinals Chapters Program</p>
