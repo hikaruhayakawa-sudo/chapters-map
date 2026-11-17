@@ -12,6 +12,8 @@ html body .ccw .ccw__cards .ccw__card,html body .ccw .ccw__cards .ccw__card *,ht
 html body .ccw .ccw__cta{flex-wrap:wrap!important;gap:12px!important;align-items:center!important}
 html body .ccw .ccw__cta>p{flex:1 1 100%!important;margin:0 0 4px!important}
 html body .ccw .ccw__cta>a{margin:0!important}
+html body .ccw .cc-vivid .ccw__cta{background:#fff!important}
+html body .ccw .cc-vivid .ccw__eyebrow{color:#000!important}
 </style>
 <script id="cc-trim-js">(function(){
 function P(re,root){return [].slice.call((root||document).querySelectorAll('.ccw p,.ccw li,.ccw dd,.ccw div'))}
@@ -55,8 +57,18 @@ function me(){
  paras(/^\s*Why one year at a time/).forEach(rm);
  var ex=heading(/Read the results, the methods, and the lessons/);if(ex){var s=ex.closest('section');rm(s)}
 }
+function color(){var B='https://hikaruhayakawa-sudo.github.io/chapters-map/recognitions/';
+ function paint(sec,c){if(sec&&!sec.dataset.ccc){sec.dataset.ccc=1;sec.style.background=c;sec.classList.add('cc-vivid')}}
+ function secOf(re){var h=heading(re);return h&&h.closest('section')}
+ if(/why-us/.test(path)){paint(document.getElementById('why-backing'),'#9FDFFF');paint(secOf(/From a Google Form|It started with one family/),'#FF4DA1');}
+ if(/programs/.test(path)){paint(document.getElementById('chapters'),'#BEEA88');paint(document.getElementById('translations'),'#FEA500');paint(secOf(/Fund a program, a region, or a cohort/),'#FF4DA1');}
+ [].slice.call(document.querySelectorAll('.ccw img')).forEach(function(i){var s=i.currentSrc||i.src||'';
+  if(/01problemycareuganda/.test(s)&&!i.dataset.ccp){i.dataset.ccp=1;i.removeAttribute('srcset');i.src=B+'photo-ycare-uganda.jpg'}
+  if(/fellowshipquincybernice/.test(s)&&!i.dataset.ccp){i.dataset.ccp=1;i.removeAttribute('srcset');i.src=B+'photo-fellow-beach.jpg';i.alt='A Climate Cardinals fellow carrying a bag of plastic bottles collected at a beach cleanup';var fc=i.closest('figure')&&i.closest('figure').querySelector('figcaption');if(fc)fc.textContent='A Climate Cardinals fellow at a beach cleanup.'}
+ });
+}
 function common(){[].slice.call(document.querySelectorAll('.ccw a.ccw__tocm')).forEach(function(a){if(/Tap to view the full diagram/i.test(a.textContent))a.textContent='View the full diagram'})}
-function go(){common();if(!document.querySelector('.ccw'))return false;
+function go(){common();color();if(!document.querySelector('.ccw'))return false;
  if(/why-us/.test(path))why();if(/programs/.test(path))prog();if(/monitoring-evaluation/.test(path))me();return true}
 var n=0,iv=setInterval(function(){if(go()&&++n>3)clearInterval(iv);if(n>80)clearInterval(iv)},300);
 })();</script>
