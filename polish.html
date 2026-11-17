@@ -1,0 +1,28 @@
+<style id="cc-polish">
+html body .ccw h1,html body .ccw h2,html body .ccw h3,html body .ccw h4{color:#000!important}
+html body .ccw .ccw__card--translations h2,html body .ccw .ccw__card--translations h3,html body .ccw .ccw__card--chapters h2,html body .ccw .ccw__card--chapters h3,html body .ccw #why-partner>*>h2,html body .ccw #why-partner .ccw__intro h2{color:#fff!important}
+html body .ccw mark.ccw-goal{background:none!important;color:inherit!important;padding:0!important;box-shadow:none!important;font-weight:700}
+html body .ccw ul.ccw__wall.cc-logos{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+html body .ccw ul.ccw__wall.cc-logos li{background:#fff;border:1px solid rgba(0,0,0,.1);min-height:110px;padding:18px}
+html body .ccw ul.ccw__wall.cc-logos img{max-width:100%;max-height:70px;width:auto;height:auto;display:block}
+html body .ccw p.cc-also{margin-top:14px;font-size:.95rem}
+@media (max-width:640px){html body .ccw ul.ccw__wall.cc-logos{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+</style>
+<script id="cc-polish-js">(function(){
+var L='https://hikaruhayakawa-sudo.github.io/chapters-map/recognitions/';
+function txt(re,to){var w=document.createTreeWalker(document.querySelector('.ccw')||document.body,NodeFilter.SHOW_TEXT),n;while((n=w.nextNode())){if(re.test(n.nodeValue))n.nodeValue=n.nodeValue.replace(re,to)}}
+function go(){var c=document.querySelector('.ccw');if(!c)return false;
+txt(/language barriers in the climate movement/,'language barriers in the climate sector');
+txt(/emerging leaders aged 16–22 from underrepresented backgrounds/,'emerging leaders from underrepresented backgrounds, with priority for ages 16–22');
+txt(/focusing on young people ages 16–22 who/,'prioritizing young people ages 16–22 who');
+var w=c.querySelector('ul.ccw__wall');
+if(w&&!w.classList.contains('cc-logos')){
+ var logos=[['Google.org','sup-google.png'],['UNESCO','sup-un.png'],['The Nature Conservancy','sup-tnc.png'],['Shawn Mendes Foundation','sup-smf.png']];
+ w.innerHTML=logos.map(function(l){return '<li><img src="'+L+l[1]+'" alt="'+l[0]+'" loading="lazy"></li>'}).join('');
+ w.classList.add('cc-logos');
+ var p=document.createElement('p');p.className='cc-also';p.textContent='Also supported by 776 Foundation, Stanley 1913, Gold House, Coachtopia, Eleven Eleven Foundation and Kito Impact Foundation.';
+ w.insertAdjacentElement('afterend',p);
+}
+return true}
+var n=0,iv=setInterval(function(){if(go()||++n>80)clearInterval(iv)},200);
+})();</script>
