@@ -1,0 +1,62 @@
+<style id="cc-trim">
+html body .ccw .ccw__arrow,html body .ccw #why-money .ccw__arrow{color:#000!important}
+html body .ccw #why-money *{color:#000}
+html body .ccw #why-money .ccw__bar,html body .ccw #why-money [class*="track"]{background:rgba(0,0,0,.15)}
+html body .ccw #why-money [class*="fill"]{background:#000!important}
+html body .ccw .ccw__intro h2{text-transform:uppercase!important;font-weight:900!important;font-size:clamp(28px,3.1vw,39.68px)!important;line-height:1.02!important}
+html body .ccw #why-results .ccw__col.ccw__box,html body .ccw #why-money .ccw__col.ccw__box,html body .ccw .cc-vivid .ccw__col.ccw__box{background:#fff!important}
+html body .ccw .ccw__card--translations{background:#9FDFFF!important}
+html body .ccw .ccw__card--chapters{background:#BEEA88!important}
+html body .ccw .ccw__card--fellowship{background:#FF4DA1!important}
+html body .ccw .ccw__cards .ccw__card,html body .ccw .ccw__cards .ccw__card *,html body .ccw .ccw__cards .ccw__card h2,html body .ccw .ccw__cards .ccw__card h3{color:#000!important}
+html body .ccw .ccw__cta{flex-wrap:wrap!important;gap:12px!important;align-items:center!important}
+html body .ccw .ccw__cta>p{flex:1 1 100%!important;margin:0 0 4px!important}
+html body .ccw .ccw__cta>a{margin:0!important}
+</style>
+<script id="cc-trim-js">(function(){
+function P(re,root){return [].slice.call((root||document).querySelectorAll('.ccw p,.ccw li,.ccw dd,.ccw div'))}
+function paras(re){return [].slice.call(document.querySelectorAll('.ccw p')).filter(function(p){return re.test(p.textContent)})}
+function rm(el){if(el&&el.parentNode)el.parentNode.removeChild(el)}
+function heading(re){return [].slice.call(document.querySelectorAll('.ccw h2,.ccw h3,.ccw h4')).find(function(h){return re.test(h.textContent)})}
+function smallest(re){var c=[].slice.call(document.querySelectorAll('.ccw *')).filter(function(e){return re.test(e.textContent)&&e.children.length<12});c.sort(function(a,b){return a.textContent.length-b.textContent.length});return c[0]}
+var path=location.pathname;
+function why(){
+ // Our story
+ var h=heading(/It started with one family/);
+ if(h&&!h.dataset.cc){h.dataset.cc=1;h.textContent='From a Google Form to a global organization.';
+  var sec=h.closest('section')||h.parentNode;var ps=[].slice.call(sec.querySelectorAll('p')).filter(function(p){return !p.closest('figure')&&!p.classList.contains('ccw__eyebrow')});
+  var t=['Climate Cardinals started six years ago with $500 and a Google Form.','Our founder, Sophia Kianni, saw that her relatives in Iran couldn’t find climate information in their own language. She started translating for them, and students around the world joined her.','Today we have volunteers in 145 countries. Hikaru Wakeel Hayakawa, one of our first volunteers, became our first full-time Executive Director in 2024. Since then we have hired staff, launched new programs, and built the reporting on this page.'];
+  ps.forEach(function(p,i){if(i<t.length)p.textContent=t[i];else rm(p)})}
+ paras(/^\s*Among environmental organizations, Climate Cardinals uniquely advances/).forEach(rm);
+ var hm=paras(/^\s*How we measure\./)[0];
+ if(hm){var box=hm.parentNode;[].slice.call(box.querySelectorAll('a')).forEach(function(a){if(/Program Dashboard|post-mortem/i.test(a.textContent))rm(a)});rm(hm)}
+ [/^\s*Next\s*FY2027/,/^\s*Resilience\s*Building reserves/].forEach(function(re){var e=smallest(re);if(e)rm(e.closest('li,tr,dl,div')||e)});
+ var tr=paras(/^\s*We publish what we spend and what it produces/)[0];if(tr){tr.textContent='We publish what we spend and what it produces.';paras(/^\s*As a fiscally sponsored project of Future Incubator, our accounts/).forEach(rm)}
+ paras(/^\s*Switching translation platforms multiplied our capacity/).forEach(function(p){p.textContent='Translation output dips in 2026 while we rebuild our volunteer base on the new platform.'});
+ paras(/^\s*Our biggest risk is undercapitalization/).forEach(rm);
+}
+function prog(){
+ var h=heading(/^\s*What that model does\s*$/);if(h){var n=h.nextElementSibling;rm(h);if(n&&n.tagName==='P')rm(n)}
+ paras(/^\s*Chapters submit a report every quarter showing an activity/).forEach(function(p){p.textContent='Chapters report every quarter on a project, workshop, or capacity-building session. That report is what keeps a chapter active.'});
+ [].slice.call(document.querySelectorAll('.ccw details')).forEach(function(d){var s=(d.querySelector('summary')||{}).textContent||'';
+  if(/What does it cost to run each program/.test(s))rm(d);
+  if(/ensure accountability to communities/.test(s)){var ps=[].slice.call(d.querySelectorAll('p'));if(ps.length>1){ps[0].textContent='We gather feedback from chapters, fellows, translators and partners through surveys, calls and check-ins, and use it to improve our programs.';ps[1].innerHTML='We track results through an organization-wide impact framework and publish an annual impact report: see our <a href="/impact-report-2026">2026 report</a>.';ps.slice(2).forEach(rm)}}
+  if(/held to safeguarding standards/.test(s)){var q=[].slice.call(d.querySelectorAll('p'));q.slice(1).forEach(rm)}
+ });
+}
+function me(){
+ paras(/^\s*What follows is what we measure, how we check it/).forEach(rm);
+ var w=smallest(/^\s*Why we published it\./);if(w){var b=w.closest('div');rm(b&&b.textContent.length<700?b:w)}
+ var map=[[/^\s*We track funds raised and distributed against quarterly targets/,'Funds raised and distributed against quarterly targets, plus a diversification index that shows how much we rely on any one funder.'],[/^\s*We track participation, reach, retention, program delivery/,'Participation, reach, retention, delivery and partnerships, plus how well our systems run: automation, bottlenecks fixed, and how consistently programs report.'],[/^\s*We track how much of what we learn makes it back into the work/,'How much of what we learn goes back into the work: revised materials, documented procedures, peer-learning sessions and training.'],[/^\s*We track outcomes such as changes in knowledge, confidence/,'Changes in knowledge, confidence, behavior, access to information, local action and institutional practice, plus satisfaction and how far people pass on what they learned.']];
+ map.forEach(function(m){paras(m[0]).forEach(function(p){p.textContent=m[1]})});
+ paras(/^\s*Where possible we also measure additionality/).forEach(rm);
+ var t1=paras(/^\s*Climate Cardinals has grown quickly from a student-led organization into a professional one/)[0];
+ if(t1){t1.textContent='We grew quickly from a student-led organization into a professional one. We are centralizing our data so every headline figure rests on the same method, restating figures when a method improves, and publishing the sample size next to every survey result.';paras(/^\s*We publish the sample size alongside survey results/).forEach(rm)}
+ paras(/^\s*Why one year at a time/).forEach(rm);
+ var ex=heading(/Read the results, the methods, and the lessons/);if(ex){var s=ex.closest('section');rm(s)}
+}
+function common(){[].slice.call(document.querySelectorAll('.ccw a.ccw__tocm')).forEach(function(a){if(/Tap to view the full diagram/i.test(a.textContent))a.textContent='View the full diagram'})}
+function go(){common();if(!document.querySelector('.ccw'))return false;
+ if(/why-us/.test(path))why();if(/programs/.test(path))prog();if(/monitoring-evaluation/.test(path))me();return true}
+var n=0,iv=setInterval(function(){if(go()&&++n>3)clearInterval(iv);if(n>80)clearInterval(iv)},300);
+})();</script>
