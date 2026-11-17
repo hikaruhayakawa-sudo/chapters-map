@@ -22,6 +22,8 @@ button{color:var(--ink);font-family:inherit}
 body.embed .band .eyebrow,body.embed .band h1,body.embed .band .lede{display:none}
 body.embed .band .wrap{padding-top:20px;padding-bottom:24px}
 body.embed .stats{margin-top:0}
+body.embed main{display:none}
+body.embed .band .wrap{padding-bottom:8px}
 .eyebrow{font:700 15px var(--disp);letter-spacing:0;color:#fff;margin:0 0 6px}
 h1{font:700 clamp(36px,5.6vw,72px)/.98 var(--disp);letter-spacing:-.03em!important;margin:0 0 18px;letter-spacing:-.005em;color:#fff}
 .lede{font-size:19px;line-height:1.55;color:#fff;max-width:1080px;margin:0 0 12px}
@@ -154,7 +156,7 @@ function openPanel(d,fly){fg.classed('on',x=>x===d);
  '<div class="pb">'+(d.grant?'<span class="badge">Grant-funded</span>':'')+'<span class="tag">'+esc(d.cat)+'</span><h3>'+esc(d.title)+'</h3><p class="meta">'+esc(d.chapter)+' chapter &middot; '+esc(d.place)+'<br>Chapter lead: '+esc(d.lead)+'<br>'+[fmtDate(d.date),people(d.n)].filter(Boolean).join(' &middot; ')+'</p>'+langs(d)+body(d)+'<p class="credit">'+esc(credit(d))+'</p>'+'</div>';
  panel.classList.add('show');panel.querySelector('.x').onclick=closePanel;if(fly)flyTo(d)}
 function openChapter(c){fg.classed('on',false);const fp=DATA.featured.filter(f=>f.country===c.c);
- panel.innerHTML='<button class="x" aria-label="Close">&times;</button><div class="pb"><span class="tag">Active chapter</span><h3>'+esc(c.n)+'</h3><p class="meta">'+esc(c.c)+'</p><p class="s">One of '+DATA.nchap+' active Climate Cardinals chapters. Chapters are hosted by schools, universities and other local organizations, each a registered legal entity that can receive funding. Active chapters submit a project report every quarter.'+(fp.length?' See '+fp.length+' featured project'+(fp.length>1?'s':'')+' from '+esc(c.c)+' below.':'')+'</p></div>';
+ panel.innerHTML='<button class="x" aria-label="Close">&times;</button><div class="pb"><span class="tag">Active chapter</span><h3>'+esc(c.n)+'</h3><p class="meta">'+esc(c.c)+'</p><p class="s">One of '+DATA.nchap+' active Climate Cardinals chapters. Chapters are hosted by schools, universities and other local organizations, each a registered legal entity that can receive funding. Active chapters submit a project report every quarter.'+(fp.length?' See '+fp.length+' featured project'+(fp.length>1?'s':'')+' from '+esc(c.c)+(document.body.classList.contains('embed')?' on the map.':' below.'):'')+'</p></div>';
  panel.classList.add('show');panel.querySelector('.x').onclick=closePanel}
 function closePanel(){panel.classList.remove('show');fg.classed('on',false)}
 // stats
