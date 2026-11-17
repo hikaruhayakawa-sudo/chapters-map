@@ -1,0 +1,11 @@
+<script id="cc-copyfix">(function(){
+var R=[[/(?:\bthe|\bThe) world’s largest youth-led ([a-z ]*?)(organization|nonprofit)\b/g,'one of the world’s largest youth-focused $1$2s'],[/one of the world’s largest youth-led/g,'one of the world’s largest youth-focused'],[/\ba youth-led nonprofit\b/g,'a youth-focused nonprofit'],[/Join the movement\./g,'Join us.']];
+function run(){if(!/^\/pressreleases\//.test(location.pathname))return;
+ var body=document.querySelector('article')||document.querySelector('main');if(!body)return;
+ var w=document.createTreeWalker(body,NodeFilter.SHOW_TEXT),n;while((n=w.nextNode())){var v=n.nodeValue,o=v;R.forEach(function(r){v=v.replace(r[0],r[1])});if(v!==o)n.nodeValue=v}
+ [].slice.call(body.querySelectorAll('p strong, p b')).forEach(function(s){var p=s.closest('p');var before='';var x=p.firstChild;var r=document.createRange();r.setStart(p,0);r.setEndBefore(s);before=r.toString().trim();
+  if(before.length===0)return; /* keep datelines and lead-in labels at the start of a paragraph */
+  if(/^(Click here to donate|Press Inquiries|Media contact)/i.test(s.textContent.trim()))return;
+  var t=document.createDocumentFragment();while(s.firstChild)t.appendChild(s.firstChild);s.parentNode.replaceChild(t,s)});
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();})();</script>

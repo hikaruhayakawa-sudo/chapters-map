@@ -14,6 +14,7 @@ html body .ccw .ccw__cta>p{flex:1 1 100%!important;margin:0 0 4px!important}
 html body .ccw .ccw__cta>a{margin:0!important}
 html body .ccw .cc-vivid .ccw__cta{background:#fff!important}
 html body .ccw .cc-vivid .ccw__eyebrow{color:#000!important}
+html body .ccw .ccw__pagelede em{font-weight:inherit!important}
 </style>
 <script id="cc-trim-js">(function(){
 function P(re,root){return [].slice.call((root||document).querySelectorAll('.ccw p,.ccw li,.ccw dd,.ccw div'))}
@@ -34,7 +35,7 @@ function why(){
  if(hm){var box=hm.parentNode;[].slice.call(box.querySelectorAll('a')).forEach(function(a){if(/Program Dashboard|post-mortem/i.test(a.textContent))rm(a)});rm(hm)}
  [/^\s*Next\s*FY2027/,/^\s*Resilience\s*Building reserves/].forEach(function(re){var e=smallest(re);if(e)rm(e.closest('li,tr,dl,div')||e)});
  var tr=paras(/^\s*We publish what we spend and what it produces/)[0];if(tr){tr.textContent='We publish what we spend and what it produces.';paras(/^\s*As a fiscally sponsored project of Future Incubator, our accounts/).forEach(rm)}
- paras(/^\s*Switching translation platforms multiplied our capacity/).forEach(function(p){p.textContent='Translation output dips in 2026 while we rebuild our volunteer base on the new platform.'});
+ paras(/^\s*Switching translation platforms multiplied our capacity/).forEach(function(p){p.textContent='Value delivered is below target while we rebuild our volunteer translator base on the new platform.'});
  paras(/^\s*Our biggest risk is undercapitalization/).forEach(rm);
 }
 function prog(){
