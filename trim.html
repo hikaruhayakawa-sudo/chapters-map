@@ -1,4 +1,6 @@
 <style id="cc-trim">
+html body .ccw #why-programs h3.cc-prog-h{font-family:CCDeacon,Deacon,"Deacon Black",Impact,sans-serif!important;letter-spacing:0;font-size:clamp(24px,2.6vw,32px)!important;line-height:1.1;margin:64px 0 28px!important;text-transform:uppercase;font-weight:900;color:#000!important}
+html body .ccw #why-programs .ccw__figure{margin-bottom:0}
 html body .ccw .ccw__arrow,html body .ccw #why-money .ccw__arrow{color:#000!important}
 html body .ccw #why-money *{color:#000}
 html body .ccw #why-money .ccw__bar,html body .ccw #why-money [class*="track"]{background:rgba(0,0,0,.15)}
@@ -37,6 +39,9 @@ function why(){
  var tr=paras(/^\s*We publish what we spend and what it produces/)[0];if(tr){tr.textContent='We publish what we spend and what it produces.';paras(/^\s*As a fiscally sponsored project of Future Incubator, our accounts/).forEach(rm)}
  paras(/^\s*Switching translation platforms multiplied our capacity/).forEach(function(p){p.textContent='Value delivered is below target while we rebuild our volunteer translator base on the new platform.'});
  paras(/^\s*Our biggest risk is undercapitalization/).forEach(rm);
+ var wp=document.getElementById('why-programs');
+ if(wp&&!wp.dataset.ccp){wp.dataset.ccp=1;var fg=wp.querySelector('figure.ccw__figure');if(fg){rm(fg.querySelector('figcaption'));rm(fg.querySelector('a.ccw__tocm'))}
+  var ul=wp.querySelector('ul.ccw__cards');if(ul){var hh=document.createElement('h3');hh.className='cc-prog-h';hh.textContent='Our programs';ul.parentNode.insertBefore(hh,ul)}}
 }
 function prog(){
  var h=heading(/^\s*What that model does\s*$/);if(h){var n=h.nextElementSibling;rm(h);if(n&&n.tagName==='P')rm(n)}
