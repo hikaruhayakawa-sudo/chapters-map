@@ -1,28 +1,55 @@
 <style id="cc-polish">
+html body .ccw{--accent:#000;--accent-deep:#000}
 html body .ccw h1,html body .ccw h2,html body .ccw h3,html body .ccw h4{color:#000!important}
-html body .ccw .ccw__card--translations h2,html body .ccw .ccw__card--translations h3,html body .ccw .ccw__card--chapters h2,html body .ccw .ccw__card--chapters h3,html body .ccw #why-partner>*>h2,html body .ccw #why-partner .ccw__intro h2{color:#fff!important}
-html body .ccw mark.ccw-goal{background:none!important;color:inherit!important;padding:0!important;box-shadow:none!important;font-weight:700}
-html body .ccw ul.ccw__wall.cc-logos{grid-template-columns:repeat(4,minmax(0,1fr))!important}
-html body .ccw ul.ccw__wall.cc-logos li{background:#fff;border:1px solid rgba(0,0,0,.1);min-height:110px;padding:18px}
-html body .ccw ul.ccw__wall.cc-logos img{max-width:100%;max-height:78px;max-width:85%;width:auto;height:auto;display:block}
-html body .ccw p.cc-also{margin-top:14px;font-size:.95rem}
-@media (max-width:640px){html body .ccw ul.ccw__wall.cc-logos{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+html body .ccw .ccw__card--chapters h2,html body .ccw .ccw__card--chapters h3{color:#fff!important}
+html body .ccw mark.ccw-goal{background:none!important;color:inherit!important;padding:0!important;border:0!important;box-shadow:none!important;font-weight:700}
+html body .ccw .ccw__pagelede em{color:#000!important}
+html body .ccw p a,html body .ccw li a{text-decoration:underline;text-underline-offset:3px}
+html body .ccw .ccw__nav{background:#F6F5F2!important}
+html body .ccw .ccw__nav a{color:#000!important}
+html body .ccw .ccw__nav a:hover,html body .ccw .ccw__nav a[aria-current="true"]{color:#3154FF!important}
+html body .ccw #why-partner{background:#BEEA88!important}
+html body .ccw #why-partner,html body .ccw #why-partner h2,html body .ccw #why-partner p,html body .ccw #why-partner .ccw__eyebrow{color:#000!important}
+html body .ccw .ccw__card--translations{background:#FEA500!important}
+html body .ccw .ccw__card--translations *,html body .ccw .ccw__card--translations h2,html body .ccw .ccw__card--translations h3{color:#000!important}
+html body .ccw a.ccw__btn,html body .ccw a.ccw__pill,html body .ccw a.ccw__tlink{display:inline-flex;align-items:center;justify-content:center;background:#000!important;border:1px solid #000!important;color:#fff!important;border-radius:26px!important;font-family:var(--body)!important;font-size:14.22px!important;font-weight:700!important;text-transform:uppercase!important;letter-spacing:.02em;padding:15px 24px!important;min-height:0!important;line-height:1.1;text-decoration:none!important;width:auto!important}
+html body .ccw a.ccw__btn:hover,html body .ccw a.ccw__pill:hover,html body .ccw a.ccw__tlink:hover,html body .ccw a.ccw__btn:focus-visible,html body .ccw a.ccw__pill:focus-visible,html body .ccw a.ccw__tlink:focus-visible{background:#3154FF!important;border-color:#3154FF!important;color:#fff!important}
+html body .ccw a.ccw__tlink::after{content:none!important}
+html body .ccw ul.ccw__wall.cc-logos{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:12px!important}
+html body .ccw ul.ccw__wall.cc-logos.cc-four{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+html body .ccw ul.ccw__wall.cc-logos li{background:#fff;border:1px solid rgba(0,0,0,.1);min-height:110px;padding:18px;display:flex;align-items:center;justify-content:center;text-align:center}
+html body .ccw ul.ccw__wall.cc-logos img{max-width:85%;max-height:62px;width:auto;height:auto;display:block}
+html body .ccw ul.ccw__wall.cc-logos .cc-word{font-family:var(--body);font-weight:700;font-size:1rem;line-height:1.2;color:#000}
+html body .ccw .cc-partners-h{margin:28px 0 12px}
+@media (max-width:760px){html body .ccw ul.ccw__wall.cc-logos,html body .ccw ul.ccw__wall.cc-logos.cc-four{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 </style>
 <script id="cc-polish-js">(function(){
 var L='https://hikaruhayakawa-sudo.github.io/chapters-map/recognitions/';
 function txt(re,to){var w=document.createTreeWalker(document.querySelector('.ccw')||document.body,NodeFilter.SHOW_TEXT),n;while((n=w.nextNode())){if(re.test(n.nodeValue))n.nodeValue=n.nodeValue.replace(re,to)}}
+function para(re){var ps=[].slice.call(document.querySelectorAll('.ccw p'));return ps.filter(function(p){return re.test(p.textContent)})}
+function tiles(list){return list.map(function(l){return l[1]?'<li><img src="'+L+l[1]+'" alt="'+l[0]+'" loading="lazy"></li>':'<li><span class="cc-word">'+l[0]+'</span></li>'}).join('')}
 function go(){var c=document.querySelector('.ccw');if(!c)return false;
 txt(/language barriers in the climate movement/,'language barriers in the climate sector');
 txt(/emerging leaders aged 16–22 from underrepresented backgrounds/,'emerging leaders from underrepresented backgrounds, with priority for ages 16–22');
 txt(/focusing on young people ages 16–22 who/,'prioritizing young people ages 16–22 who');
 var w=c.querySelector('ul.ccw__wall');
 if(w&&!w.classList.contains('cc-logos')){
- var logos=[['Google.org','sup-google.png'],['UNESCO','sup-un.png'],['The Nature Conservancy','sup-tnc.png'],['Shawn Mendes Foundation','sup-smf.png']];
- w.innerHTML=logos.map(function(l){return '<li><img src="'+L+l[1]+'" alt="'+l[0]+'" loading="lazy"></li>'}).join('');
+ w.innerHTML=tiles([['Google.org','sup-google.png'],['UNESCO','sup-un.png'],['The Nature Conservancy','sup-tnc.png'],['Shawn Mendes Foundation','sup-smf.png'],['776 Foundation','sup-776.png'],['Stanley 1913','sup-stanley.png'],['Gold House','sup-goldhouse.png'],['Coachtopia','sup-coachtopia.png'],['Eleven Eleven Foundation',''],['Kito Impact Foundation','']]);
  w.classList.add('cc-logos');
- var p=document.createElement('p');p.className='cc-also';p.textContent='Also supported by 776 Foundation, Stanley 1913, Gold House, Coachtopia, Eleven Eleven Foundation and Kito Impact Foundation.';
- w.insertAdjacentElement('afterend',p);
+ var note=[].slice.call(c.querySelectorAll('p.ccw__kpinote')).find(function(p){return /individual and anonymous donors/.test(p.textContent)});
+ if(note){note.textContent='Alongside our individual and anonymous donors.';
+  var h=document.createElement('p');h.className='ccw__subhead cc-partners-h';h.textContent='Program and translation partners';
+  var u=document.createElement('ul');u.className='ccw__wall cc-logos cc-four';
+  u.innerHTML=tiles([['UNICEF','sup-unicef.png'],['UNDP','sup-undp.png'],['Smithsonian','sup-smithsonian.png'],['L’Oréal','sup-loreal.png'],['CARE International','sup-care.png'],['Translators without Borders','sup-twb.png'],['Yale Climate Connections','sup-ycc.png'],['Climate Mental Health Network','sup-cmhn.png']]);
+  note.insertAdjacentElement('afterend',h);h.insertAdjacentElement('afterend',u);}
 }
+para(/^\s*What it costs\./).forEach(function(p){p.remove()});
+var sp=para(/^\s*Sophia Kianni, our founder, saw the problem/);
+if(sp.length){sp[0].textContent='Our founder, Sophia Kianni, saw that her relatives in Iran could not find climate information in their own language. She began translating for them, then gathered students around the world to do the same, and Climate Cardinals began.';para(/^\s*Realizing what language could unlock/).forEach(function(p){p.remove()})}
+para(/^\s*Customer is the Kaplan and Norton term/).forEach(function(p){p.textContent='For us, customers are the young people, chapters, and partners our programs exist to serve.'});
+var mt=para(/^\s*AI and machine translation have opened powerful possibilities/);
+if(mt.length){mt[0].textContent='Machine translation is fast, but it is often inaccurate or unavailable in low-resource languages, including many Indigenous and regional languages, and it can miss tone, context, and cultural meaning in any language. With climate information, clarity and trust can decide whether people act.';
+ [/^\s*Low-resource languages, like many/,/^\s*That gap is structural/,/^\s*This is not a gap that scale alone closes/,/^\s*Even in well-resourced languages/].forEach(function(re){para(re).forEach(function(p){p.remove()})})}
 return true}
 var n=0,iv=setInterval(function(){if(go()||++n>80)clearInterval(iv)},200);
 })();</script>
